@@ -1,13 +1,17 @@
 FROM python:3.9.2-buster
 
-RUN useradd myuser 
-USER myuser
-WORKDIR /home/myuser
+ARG USERNAME=myuser
 
+RUN useradd -m $USERNAME
+WORKDIR /home/$USERNAME
+USER root
 ADD ./requirements.txt ./
 ADD ./test_jwt.db ./
 ADD ./main.py ./
-RUN pip3 install --user -r requirements.txt
-
+RUN chown -R $USERNAME /home/myuser
+USER myuser
+ENV PATH $PATH:/home/${USERNAME}/.local/bin
+RUN pip3 install --upgrade pip
+RUN pip3 install -r requirements.txt
 
 ENTRYPOINT ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0"]
