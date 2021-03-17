@@ -12,6 +12,25 @@ FastAPIの認証機能の練習用リポジトリ
 ユーザー名: johndoe  
 パスワード: secret  
 
-# pythonのバージョン
+# 使い方
 
-Python 3.8.3
+イメージを作る
+
+```shell
+sudo docker image build --no-cache -t fastapi:test .
+```
+
+コンテナを起動する
+
+```shell
+sudo docker run -p 8000:8000 fastapi:test
+```
+
+以下にブラウザでアクセスする
+
+```text
+http://ipアドレス:8000/docs
+```
+
+画面右上のauthorizedにて上述の認証情報で認証する。
+そうすると鍵マークがついたAPIが使える。
