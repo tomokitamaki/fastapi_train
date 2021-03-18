@@ -18,13 +18,20 @@ SECRET_KEY = "807c5ce4f68c0688c58695d457e0af57346787622ad8a7387d1926b749ff952b"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
-# test_jwt.dbは以下のSQLで作成したtocksというテーブルと1つのレコードがある。ちなみにhashed_passwordは
-# secretを get_password_hash 関数でハッシュ化したもの。
-# 'CREATE TABLE stocks (username text, full_name text, email text, hashed_password text, disabled text)'
-# 'insert into stocks values("johndoe", "John Doe", "johndoe@example.com", "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW", "False")
-# conn = sqlite3.connect("test_jwt.db")
-# cur = conn.cursor()
-# name = ("johndoe",)
+"""
+test_jwt.dbは以下のSQLで作成したtocksというテーブルと2つのレコードがある。
+テーブルの作成のクエリ
+CREATE TABLE stocks (username text, full_name text, email text, hashed_password text, disabled text)
+---
+1つめのレコードのクエリ
+insert into stocks values("johndoe", "John Doe", "johndoe@example.com", "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW", "False")
+ハッシュはsecretを get_password_hash 関数でハッシュ化したもの。
+
+---
+2つめのレコード
+insert into stocks values("taro", "Taro Kun", "taro@example.com", "$2b$12$DhOcndT526IneIkaWfWP1.i0aRKY2Z3UvnPEGhZ7ZgY38u7pDLzJ.", "False")
+ハッシュは another_user_password!123 をget_password_hash 関数でハッシュ化したもの。
+"""
 
 
 class Token(BaseModel):
