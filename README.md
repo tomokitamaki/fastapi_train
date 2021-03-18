@@ -9,8 +9,13 @@ FastAPIの認証機能の練習用リポジトリ
 
 # 認証情報
 
-ユーザー名: johndoe  
-パスワード: secret  
+- ひとつめ  
+ユーザー名: `johndoe`  
+パスワード: `secret`  
+
+- ふたつめ  
+ユーザー名: `taro`  
+パスワード: `another_user_password!123`  
 
 # 使い方
 
