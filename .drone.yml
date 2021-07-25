@@ -23,4 +23,4 @@ server:
 steps:
 - name: touch me
   commands:
-    - touch TestFromDroneCI.txt
+    - touch /home/ubuntu/TestFromDroneCI.txt
