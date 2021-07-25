@@ -24,6 +24,6 @@ server:
 steps:
 - name: build me
   commands:
-    - docker image build .
+    - sudo docker image build .
 depends_on:
   - "default"
