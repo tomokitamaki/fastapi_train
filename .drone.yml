@@ -24,6 +24,6 @@ server:
 steps:
 - name: build me
   commands:
-    - sudo docker image build .
+    - sudo docker image build -t fastapi:test .
 depends_on:
   - "default"
