@@ -22,8 +22,8 @@ server:
     from_secret: secretkey_for_test_server
 
 steps:
-- name: touch me
+- name: build me
   commands:
-    - touch /home/ubuntu/TestFromDroneCI.txt
+    - docker image build .
 depends_on:
   - "default"
