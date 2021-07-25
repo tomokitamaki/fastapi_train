@@ -8,3 +8,19 @@ steps:
   - pip install -r requirements.txt
   - pip install pytest
   - pytest tests/
+
+---
+kind: pipeline
+type: ssh
+name: go ssh
+
+server:
+  host: 153.125.147.228
+  user: ubuntu
+  ssh_key:
+    from_secret: secretkey_for_test_server
+
+steps:
+- name: touch me
+  commands:
+    - touch TestFromDroneCI.txt
