@@ -30,6 +30,6 @@ steps:
     key:
       from_secret: secretkey_for_test_server
     script:
-      - sudo docker image build -t fastapi:test .
+      - cd ~/fastapi_train/ && sudo docker image build -t fastapi:test .
 depends_on:
   - "default"
