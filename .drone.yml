@@ -12,18 +12,24 @@ steps:
 
 ---
 kind: pipeline
-type: ssh
+type: docker
 name: go ssh
 
-server:
-  host: 153.125.147.228
-  user: ubuntu
-  ssh_key:
-    from_secret: secretkey_for_test_server
+# server:
+#   host: 153.125.147.228
+#   user: ubuntu
+#   ssh_key:
+#     from_secret: secretkey_for_test_server
 
 steps:
 - name: build me
-  commands:
-    - sudo docker image build -t fastapi:test .
+  image: appleboy/drone-ssh
+  settings:
+    host: 153.125.147.228
+    username: ubuntu
+    key:
+      from_secret: secretkey_for_test_server
+    script:
+      - sudo docker image build -t fastapi:test .
 depends_on:
   - "default"
