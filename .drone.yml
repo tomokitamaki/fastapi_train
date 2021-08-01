@@ -1,0 +1,44 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: test
+  image: python
+  commands:
+  - pip install -r requirements.txt
+  - pip install pytest
+  - pytest tests/
+
+trigger:
+  ref:
+  - refs/heads/master
+
+---
+kind: pipeline
+type: docker
+name: go ssh
+
+# server:
+#   host: 153.125.147.228
+#   user: ubuntu
+#   ssh_key:
+#     from_secret: secretkey_for_test_server
+
+steps:
+- name: build me
+  image: appleboy/drone-ssh
+  settings:
+    host: 153.125.147.228
+    username: ubuntu
+    key:
+      from_secret: secretkey_for_test_server
+    script:
+      - cd ~/fastapi_train/
+      - sudo docker image build -t fastapi:test .
+depends_on:
+  - "default"
+
+trigger:
+  ref:
+  - refs/heads/master
