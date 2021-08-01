@@ -10,6 +10,10 @@ steps:
   - pip install pytest
   - pytest tests/
 
+trigger:
+  ref:
+  - refs/heads/master
+
 ---
 kind: pipeline
 type: docker
@@ -34,3 +38,7 @@ steps:
       - sudo docker image build -t fastapi:test .
 depends_on:
   - "default"
+
+trigger:
+  ref:
+  - refs/heads/master
