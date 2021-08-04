@@ -12,7 +12,7 @@ steps:
 
 trigger:
   ref:
-  - refs/heads/master
+  # - refs/heads/master
   - refs/pull/**
   # - refs/push/**
   - refs/heads/**
